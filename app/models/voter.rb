@@ -1,6 +1,6 @@
 class Voter < ApplicationRecord
-  has_one :vote, dependent: :destroy #  vote is destroyed if voter is deleted
-  has_one :candidate, through: :vote
+  has_one :vote, dependent: :destroy #  Vote is destroyed if voter is deleted
+  has_one :candidate, through: :vote # Allows calling voter.candidate to see who voter voted for
 
   validates :email, presence: true, uniqueness: true
   validates :zip, presence: true
@@ -10,6 +10,7 @@ class Voter < ApplicationRecord
     !wrote_in && (Candidate.count < 10)
   end
 
+  # Can vote only if they haven't already
   def can_vote?
     !voted
   end

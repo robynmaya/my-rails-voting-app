@@ -26,7 +26,10 @@ function Login() {
           navigate("/vote");
         } else {
           return res.json().then((json) => {
-            throw new Error(json.error || "Login failed");
+            if (json.errors) {
+              throw new Error(json.errors.join(", "));
+            }
+            throw new Error("Login failed");
           });
         }
       })

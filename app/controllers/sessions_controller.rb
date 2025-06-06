@@ -1,15 +1,18 @@
 class SessionsController < ApplicationController
+  skip_forgery_protection only: [:create, :destroy]
   # POST /login
   # Expects JSON: { email: "...", zip: "..." }
   def create
     voter = Voter.find_or_initialize_by(email: params[:email].to_s.downcase)
-    voter.zip = params[:zip]
+    voter.zip      = params[:zip]
     voter.password = params[:password]
-    # If persisted, the existing voter's zip stays as it is
-    voter.save! unless voter.persisted?
 
-    session[:voter_id] = voter.id
-    render json: { success: true, voter_id: voter.id }, status: :ok
+    if voter.save
+      session[:voter_id] = voter.id
+      render json: { success: true, voter_id: voter.id }
+    else
+      render json: { errors: voter.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   # DELETE /logout

@@ -7,7 +7,7 @@ class Candidate < ApplicationRecord
 
   private
 
-  def max_candidates_not_exceeded?
+  def max_candidates_not_exceeded
     if Candidate.count >= 10
       errors.add(:base, "Cannot have more than 10 candidates")
     end

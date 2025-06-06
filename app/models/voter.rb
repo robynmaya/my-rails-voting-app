@@ -3,6 +3,7 @@ class Voter < ApplicationRecord
   has_one :candidate, through: :vote # Allows calling voter.candidate to see who voter voted for
 
   validates :email, presence: true, uniqueness: true
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
   validates :zip, presence: true
 
   # Before saving, ensure the voter has not already voted and less than 10 candidates exist

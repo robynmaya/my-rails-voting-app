@@ -19,7 +19,7 @@ function Login() {
         "Content-Type": "application/json",
         "Accept":       "application/json"
       },
-      body: JSON.stringify({ email, zip })
+      body: JSON.stringify({ email, zip, password })
     })
       .then((res) => {
         if (res.ok) {

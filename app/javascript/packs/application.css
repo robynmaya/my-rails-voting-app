@@ -1,7 +1,541 @@
+/* Global box‐sizing rule to prevent unwanted overflow */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Page background: subtle vertical gradient and base typography */
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0f4f8 0%, #d9e2ec 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+               'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+               'Helvetica Neue', sans-serif;
+  color: #1f2937;
+}
+
+
+
+/* ——————————————————————————————— */
+/*  Login Page Styles                  */
+/* ——————————————————————————————— */
+
+/* Center the card vertically and horizontally */
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Card container */
+.login-card {
+  position: relative;
+  width: 50%;           /* 50% of viewport width */
+  max-width: 360px;     /* never exceed 360px */
+  min-width: 280px;     /* never shrink below 280px */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Accent stripe at the top */
+.login-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+}
+
+/* Inner padding */
+.login-container {
+  padding: 1.25rem 1.5rem;
+}
+
+/* Title */
+.login-heading {
+  margin: 0 0 1.25rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+}
+
+/* Error message */
+.login-error {
+  background-color: #fce7e7;
+  border: 1px solid #ef4444;
+  color: #b91c1c;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Form layout */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-field {
+  margin-bottom: 1.25rem;
+}
+
+.login-field label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #374151;
+}
+
+/* Input fields */
+.login-input {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  font-size: 1rem;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #111827;
+  transition: border-color 0.2s ease-in-out,
+              box-shadow 0.2s ease-in-out,
+              background-color 0.2s ease-in-out;
+}
+
+.login-input::placeholder {
+  color: #9ca3af;
+}
+
+.login-input:hover {
+  background-color: #ffffff;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  background-color: #ffffff;
+}
+
+/* Button */
+.login-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out,
+              box-shadow 0.2s ease-in-out;
+}
+
+.login-button:hover,
+.login-button:focus {
+  background: linear-gradient(90deg, #4338ca, #5b21b6);
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+  outline: none;
+}
+
+/* Hide asterisk visually but keep it readable by screen readers */
+.login-field label span[aria-hidden="true"] {
+  color: transparent;
+  height: 0;
+  width: 0;
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Minimum touch‐target size */
+.login-input,
+.login-button {
+  min-height: 2.5rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .login-page {
+    padding: 1rem;
+  }
+
+  .login-container {
+    padding: 1rem;
+  }
+
+  .login-heading {
+    font-size: 1.75rem;
+  }
+}
+
+
+
+/* ——————————————————————————————— */
+/*  Voting Page Styles                 */
+/* ——————————————————————————————— */
+
+/* Center the card vertically and horizontally */
+.voting-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Card container */
+.voting-card {
+  position: relative;
+  width: 50%;
+  max-width: 600px;
+  min-width: 320px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Accent stripe at top */
+.voting-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+}
+
+/* Inner padding */
+.voting-container {
+  padding: 2rem 2.5rem;
+}
+
+/* Main heading */
+.voting-heading {
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+}
+
+/* Error message */
+.voting-error {
+  background-color: #fce7e7;
+  border: 1px solid #ef4444;
+  color: #b91c1c;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Candidate list */
+.candidate-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.candidate-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.candidate-item:hover {
+  background-color: #f9fafb;
+  border-color: #cbd5e1;
+}
+
+.candidate-name {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.candidate-votes {
+  margin-left: 0.5rem;
+  color: #4b5563;
+}
+
+/* Vote button */
+.candidate-vote-btn {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.candidate-vote-btn:hover,
+.candidate-vote-btn:focus {
+  background: linear-gradient(90deg, #4338ca, #5b21b6);
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+  outline: none;
+}
+
+/* Divider line */
+.voting-divider {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 2rem 0;
+}
+
+/* Subheading for write-in */
+.voting-subheading {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Write-in form */
+.writein-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.writein-input {
+  flex: 1 1 auto;
+  padding: 0.65rem 0.9rem;
+  font-size: 1rem;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #111827;
+  transition: border-color 0.2s ease-in-out,
+              box-shadow 0.2s ease-in-out,
+              background-color 0.2s ease-in-out;
+  min-width: 0;
+}
+
+.writein-input::placeholder {
+  color: #9ca3af;
+}
+
+.writein-input:hover {
+  background-color: #ffffff;
+}
+
+.writein-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  background-color: #ffffff;
+}
+
+/* Write-in button */
+.writein-button {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.writein-button:hover,
+.writein-button:focus {
+  background: linear-gradient(90deg, #4338ca, #5b21b6);
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+  outline: none;
+}
+
+/* “Thank you” message styling */
+.voting-thanks {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #111827;
+  text-align: center;
+}
+
+/* Button on thank-you screen */
+.voting-button {
+  padding: 0.65rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.voting-button:hover,
+.voting-button:focus {
+  background: linear-gradient(90deg, #4338ca, #5b21b6);
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.3);
+  outline: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .voting-card {
+    width: 90%;
+    min-width: unset;
+  }
+  .writein-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .writein-input,
+  .writein-button {
+    width: 100%;
+  }
+}
+
+
+
+/* ——————————————————————————————— */
+/*  Results Page Styles                */
+/* ——————————————————————————————— */
+
+/* Center the card vertically and horizontally */
+.results-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Card container */
+.results-card {
+  position: relative;
+  width: 50%;
+  max-width: 600px;
+  min-width: 320px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Accent stripe at the top */
+.results-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+}
+
+/* Inner padding */
+.results-container {
+  padding: 2rem 2.5rem;
+}
+
+/* Heading */
+.results-heading {
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+}
+
+/* Table wrapper for horizontal overflow if needed */
+.results-table-wrapper {
+  overflow-x: auto;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.results-th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  background-color: #f3f4f6;
+  color: #111827;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.results-th--right {
+  text-align: right;
+}
+
+.results-tr {
+  background-color: #ffffff;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.results-tr--alt {
+  background-color: #f9fafb;
+}
+
+.results-tr:hover {
+  background-color: #eef2ff;
+}
+
+.results-td {
+  padding: 0.75rem 1rem;
+  color: #374151;
+}
+
+.results-td--right {
+  text-align: right;
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #6b7280;
+}
+
+/* Visually hidden for screen‐reader only elements */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Focus styles (if table cells become focusable) */
+.results-td:focus {
+  outline: 3px dotted #4f46e5;
+}
+
+/* Responsive card width */
+@media (max-width: 600px) {
+  .results-card {
+    width: 90%;
+    min-width: unset;
+  }
 }

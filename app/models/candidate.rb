@@ -3,7 +3,7 @@ class Candidate < ApplicationRecord
   has_many :voters, through: :votes
 
   validates :name, presence: true, uniqueness: true
-  validates :max_candidates_not_exceeded, on: :create
+  validate :max_candidates_not_exceeded, on: :create
 
   private
 

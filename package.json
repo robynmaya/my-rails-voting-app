@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "babel": {
     "presets": [
-       "@babel/preset-react"
+      "@babel/preset-react"
     ]
   },
   "browserslist": [
@@ -24,9 +24,10 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "mini-css-extract-plugin": "^2.9.2",
-    "react": "^18.3.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-router-dom": "^7.6.2",
     "react_ujs": "^3.2.1",
-    "react-dom": "^18.3.1",
     "shakapacker": "8.1.0",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.11",

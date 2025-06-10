@@ -3,8 +3,8 @@
   "name": "app",
   "private": true,
   "scripts": {
-    "build": "bin/shakapacker --progress",
-    "heroku-postbuild": "npm run build"
+    "start": "bin/rails server",
+    "test": "bin/rails test"
   },
   "engines": {
     "node": "24.1.0"

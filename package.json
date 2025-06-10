@@ -2,6 +2,13 @@
   "packageManager": "yarn@1.22.19",
   "name": "app",
   "private": true,
+  "scripts": {
+    "build": "bin/shakapacker --progress",
+    "heroku-postbuild": "npm run build"
+  },
+  "engines": {
+    "node": "24.1.0"
+  },
   "version": "0.1.0",
   "babel": {
     "presets": [

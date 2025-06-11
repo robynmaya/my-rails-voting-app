@@ -36,6 +36,8 @@ bundle  exec  rails  server
 
 Visit [http://localhost:3000](http://localhost:3000) in your browser
 
+### App has been deployed to https://voting-app-rails-react-56b607be6c7b.herokuapp.com/
+
 For asset live reloading, run:
 
 ```sh

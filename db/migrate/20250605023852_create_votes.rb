@@ -8,6 +8,6 @@ class CreateVotes < ActiveRecord::Migration[7.0]
     end
 
     # Ensure a voter can only vote once
-    add_index :votes, :voter_id, unique: true
+    add_index :votes, :voter_id, unique: true unless index_exists?(:votes, :voter_id)
   end
 end

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchJson } from "../utils/fetchJson";
+import { useUser } from "../contexts/UserContext";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -7,34 +9,33 @@ function Login() {
   const [zip, setZip] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { login } = useUser();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(null);
 
-    fetch("/login", {
+    fetchJson("/login", {
       method: "POST",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept":       "application/json"
-      },
-      body: JSON.stringify({ email, zip, password })
+      body: {
+        email: email.trim().toLowerCase(),
+        zip: zip.trim(),
+        password: password.trim()
+      }
     })
-      .then((res) => {
-        if (res.ok) {
-          navigate("/vote");
-        } else {
-          return res.json().then((json) => {
-            if (json.errors) {
-              throw new Error(json.errors.join(", "));
-            }
-            throw new Error("Login failed");
-          });
-        }
+      .then((data) => {
+        // Store the user data including voter_id and voting status
+        login({
+          voter_id: data.voter_id,
+          email: email.trim().toLowerCase(),
+          zip: zip.trim(),
+          wrote_in: data.wrote_in,
+          voted: data.voted
+        });
+        navigate("/vote");
       })
       .catch((err) => setError(err.message));
-  };
+    };
 
   return (
     <main className="login-page">
@@ -57,10 +58,11 @@ function Login() {
                 id="email-input"
                 name="email"
                 type="email"
+                autoComplete="email"
                 required
                 aria-required="true"
                 value={email}
-                onChange={(e) => setEmail(e.target.value.trim().toLowerCase())}
+                onChange={(e) => setEmail(e.target.value)}
                 className="login-input"
                 placeholder="you@example.com"
               />
@@ -73,6 +75,7 @@ function Login() {
                 id="password-input"
                 name="password"
                 type="password"
+                autoComplete="current-password"
                 required
                 aria-required="true"
                 value={password}
@@ -89,6 +92,7 @@ function Login() {
                 id="zip-input"
                 name="zip"
                 type="text"
+                autoComplete="postal-code"
                 required
                 aria-required="true"
                 value={zip}
